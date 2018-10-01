@@ -21,5 +21,12 @@ class MainActivity : AppCompatActivity() {
         // Init list
         val myList = MutableList(100) { "This is item number $it" }
         myAdapter.setList(myList)
+
+        // If we can scroll the list up, then set header is selected,
+        // otherwise set header not selected
+        // (animation is implemented by StateListAnimator).
+        recyclerView.setOnScrollChangeListener { _, _, _, _, _ ->
+            header.isSelected = recyclerView.canScrollVertically(-1)
+        }
     }
 }
